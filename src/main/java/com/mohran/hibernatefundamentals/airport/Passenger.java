@@ -4,8 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PASSENGERS")
-@SecondaryTable(name = "ADDRESSES",
-    pkJoinColumns = @PrimaryKeyJoinColumn(name = "PASSENGER_ID",referencedColumnName = "PASSENGER_ID")
+@SecondaryTables(
+        {
+                @SecondaryTable(name = "ADDRESSES",
+                        pkJoinColumns = @PrimaryKeyJoinColumn(name = "PASSENGER_ID", referencedColumnName = "PASSENGER_ID")),
+                @SecondaryTable(name = "PHONES",
+                        pkJoinColumns = @PrimaryKeyJoinColumn(name = "PASSENGER_ID", referencedColumnName = "PASSENGER_ID"))
+        }
 )
 public class Passenger {
     @Id
@@ -21,6 +26,13 @@ public class Passenger {
     private String zipCode;
     @Column(name = "CITY",table = "ADDRESSES",columnDefinition  = "varchar(25) not null")
     private String city   ;
+    @Column(name = "AREA_CODE",table = "PHONES",columnDefinition = "varchar(5) not null")
+    private String areaCode;
+    @Column(name = "PREFIX",table = "PHONES",columnDefinition = "varchar(5) not null")
+    private String prefix;
+    @Column(name = "LINE_NUMBER",table = "PHONES",columnDefinition = "varchar(10) not null")
+    private String lineNumber;
+
 
     public Passenger() {
     }
@@ -77,5 +89,29 @@ public class Passenger {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(String lineNumber) {
+        this.lineNumber = lineNumber;
     }
 }

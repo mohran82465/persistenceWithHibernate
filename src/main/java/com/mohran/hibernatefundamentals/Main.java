@@ -18,6 +18,9 @@ public class Main {
          mohran.setStreet("Akhmim");
          mohran.setZipCode("1234567");
          mohran.setNumber("7");
+         mohran.setAreaCode("002");
+         mohran.setPrefix("010");
+         mohran.setLineNumber("98187312");
 
         em.persist(mohran);
 
