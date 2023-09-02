@@ -1,6 +1,8 @@
 package com.mohran.hibernatefundamentals;
 
 import com.mohran.hibernatefundamentals.airport.Passenger;
+import com.mohran.hibernatefundamentals.airport.Ticket;
+import com.mohran.hibernatefundamentals.airport.TicketKey;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,16 +15,13 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        Passenger mohran = new Passenger(1, "mohamed mohran");
-         mohran.setCity("Sohag");
-         mohran.setStreet("Akhmim");
-         mohran.setZipCode("1234567");
-         mohran.setNumber("7");
-         mohran.setAreaCode("002");
-         mohran.setPrefix("010");
-         mohran.setLineNumber("98187312");
-
-        em.persist(mohran);
+        Ticket ticket = new Ticket();
+        TicketKey key = new TicketKey();
+        key.setSeries("AA");
+        key.setNumber("12345");
+        ticket.setId(key);
+        ticket.setOrigin("Sohag");
+        ticket.setDestination("London");
 
 
 
