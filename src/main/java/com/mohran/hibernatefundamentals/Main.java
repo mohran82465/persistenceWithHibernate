@@ -16,13 +16,12 @@ public class Main {
 
         em.getTransaction().begin();
         Ticket ticket = new Ticket();
-        TicketKey key = new TicketKey();
-        key.setSeries("AA");
-        key.setNumber("12345");
-        ticket.setId(key);
+        ticket.setSeries("AA");
+        ticket.setNumber("12345");
+
         ticket.setOrigin("Sohag");
         ticket.setDestination("London");
-
+        em.persist(ticket);
 
 
         em.getTransaction().commit();
