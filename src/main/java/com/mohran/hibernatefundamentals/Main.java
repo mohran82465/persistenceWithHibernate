@@ -23,6 +23,10 @@ public class Main {
 
         mohran.addTicket(ticket1);
         mohran.addTicket(ticket2);
+
+        mohran.addAttribute("VIP","Yes");
+        mohran.addAttribute("FREQUENT_FLYER","Yes");
+        
         em.persist(mohran );
 
 
