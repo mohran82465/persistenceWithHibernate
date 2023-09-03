@@ -4,23 +4,28 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TICKETS")
-@IdClass(TicketKey.class)
 public class Ticket {
 
     @Id
-    private String series;
+    @GeneratedValue
+    @Column(name = "ID")
+    private int id ;
+    @Column(name = "NUMBER")
     private String number;
 
+    @ManyToOne
+    @JoinColumn(name = "PASSENGER_ID")
+    private Passenger passenger;
 
-    private String origin;
-    private String destination;
-
-    public String getSeries() {
-        return series;
+    public Ticket(String number) {
+        this.number = number;
     }
 
-    public void setSeries(String series) {
-        this.series = series;
+    public Ticket() {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNumber() {
@@ -31,19 +36,12 @@ public class Ticket {
         this.number = number;
     }
 
-    public String getOrigin() {
-        return origin;
+    public Passenger getPassenger() {
+
+        return passenger;
     }
 
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 }
