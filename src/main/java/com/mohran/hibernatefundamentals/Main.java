@@ -15,17 +15,26 @@ public class Main {
 
         em.getTransaction().begin();
         Passenger mohran = new Passenger("mohamed mohran");
-        Ticket ticket1 = new Ticket("AA1234");
-        ticket1.setPassenger(mohran);
+        Passenger ashraf = new Passenger("ahmed ashraf");
 
+        Ticket ticket1 = new Ticket("AA1234");
         Ticket ticket2 = new Ticket("BB5678");
-        ticket2.setPassenger(mohran);
 
         mohran.addTicket(ticket1);
         mohran.addTicket(ticket2);
 
+        ashraf.addTicket(ticket1);
+        ashraf.addTicket(ticket2);
+
+        ticket1.addPassenger(mohran);
+        ticket1.addPassenger(ashraf);
+        ticket2.addPassenger(mohran);
+        ticket2.addPassenger(ashraf);
+
+
         em.persist(mohran);
         em.persist(ticket1);
+        em.persist(ashraf);
         em.persist(ticket2);
 
         em.getTransaction().commit();

@@ -14,7 +14,8 @@ public class Passenger {
     private int id ;
     @Column(name = "PASSENGER_NAME")
     private String name ;
-    @OneToMany(mappedBy = "passenger")
+
+    @ManyToMany(mappedBy = "passengers")
     private List<Ticket> tickets= new ArrayList<>();
 
     public Passenger() {

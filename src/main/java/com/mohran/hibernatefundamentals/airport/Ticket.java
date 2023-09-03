@@ -1,6 +1,9 @@
 package com.mohran.hibernatefundamentals.airport;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "TICKETS")
@@ -13,9 +16,8 @@ public class Ticket {
     @Column(name = "NUMBER")
     private String number;
 
-    @ManyToOne
-    @JoinColumn(name = "PASSENGER_ID")
-    private Passenger passenger;
+    @ManyToMany
+     private List<Passenger> passengers = new ArrayList<>();
 
     public Ticket(String number) {
         this.number = number;
@@ -36,12 +38,12 @@ public class Ticket {
         this.number = number;
     }
 
-    public Passenger getPassenger() {
+    public List<Passenger> getPassenger() {
 
-        return passenger;
+        return Collections.unmodifiableList(passengers);
     }
 
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
+    public void addPassenger(Passenger passenger) {
+        passengers.add(passenger);
     }
 }
