@@ -1,6 +1,10 @@
 package com.mohran.hibernatefundamentals.airport;
 
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "PASSENGERS")
@@ -9,15 +13,11 @@ public class Passenger {
     @GeneratedValue
     private int id ;
     private String name ;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride( name = "street", column = @Column(name = "PASSENGER_STREET")),
-            @AttributeOverride( name = "number", column = @Column(name = "PASSENGER_NUMBER")),
-            @AttributeOverride( name = "zipCode", column = @Column(name = "PASSENGER_ZIP_CODE")),
-            @AttributeOverride( name = "city", column = @Column(name = "PASSENGER_CITY"))
-
+    @ElementCollection
+    @CollectionTable(name = "PASSENGER_TICKETS",joinColumns = {
+            @JoinColumn(name = "PASSENGER_ID",referencedColumnName = "ID")
     })
-    private Address address ;
+    private List<Ticket> tickets= new ArrayList<Ticket>();
 
     public Passenger() {
     }
@@ -25,7 +25,6 @@ public class Passenger {
     public Passenger( String name) {
         this.id = id;
         this.name = name;
-        this.address = address;
     }
 
     public int getId() {
@@ -44,11 +43,11 @@ public class Passenger {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
+    public java.util.List<Ticket> getTickets() {
+        return Collections.unmodifiableList(tickets);
     }
-
-    public void setAddress(Address address) {
-        this.address = address;
+    public void addTicket(Ticket ticket)
+    {
+        tickets.add(ticket);
     }
 }
