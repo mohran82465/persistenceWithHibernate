@@ -1,17 +1,20 @@
 package com.mohran.hibernatefundamentals.airport;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
-@Embeddable
-public class Ticket {
+
+@Entity
+@Table(name = "TICKETS")
+public abstract class Ticket {
+    @Id
+    @GeneratedValue
+    private int id ;
     private String number ;
 
-    public Ticket() {
+    public int getId() {
+        return id;
     }
 
-    public Ticket(String number) {
-        this.number = number;
-    }
 
     public String getNumber() {
         return number;

@@ -1,12 +1,12 @@
 package com.mohran.hibernatefundamentals;
 
-import com.mohran.hibernatefundamentals.airport.Passenger;
-import com.mohran.hibernatefundamentals.airport.Ticket;
+import com.mohran.hibernatefundamentals.airport.OneWayTicket;
+import com.mohran.hibernatefundamentals.airport.ReturnTicket;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Table;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args)
@@ -16,19 +16,15 @@ public class Main {
 
         em.getTransaction().begin();
 
-        Passenger mohran = new Passenger("mohamed morhan");
+        OneWayTicket oneWayTicket = new OneWayTicket();
+        oneWayTicket.setNumber("AA12345");
+        oneWayTicket.setLatestDepartureDate(LocalDate.of(2023,9,16));
+        ReturnTicket returnTicket = new ReturnTicket();
+        returnTicket.setNumber("BB56789");
+        returnTicket.setLatestReturn Date(LocalDate.of(2023,10,10));
 
-        Ticket ticket1 = new Ticket("AA12345");
-        Ticket ticket2 = new Ticket("BB67890");
-
-        mohran.addTicket(ticket1);
-        mohran.addTicket(ticket2);
-
-        mohran.addAttribute("VIP","Yes");
-        mohran.addAttribute("FREQUENT_FLYER","Yes");
-        
-        em.persist(mohran );
-
+        em.persist(oneWayTicket);
+        em.persist(returnTicket);
 
         em.getTransaction().commit();
         emf.close();
