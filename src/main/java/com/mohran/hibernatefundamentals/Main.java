@@ -17,19 +17,15 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        Passenger mohran = new Passenger("mohamed mohran");
 
         OneWayTicket oneWayTicket = new OneWayTicket();
         oneWayTicket.setNumber("AA12345");
         oneWayTicket.setLatestDepartureDate(LocalDate.of(2023,9,20));
-        oneWayTicket.setPassenger(mohran);
 
         ReturnTicket returnTicket = new ReturnTicket()  ;
         returnTicket.setNumber("BB56789");
         returnTicket.setLatestReturnDate(LocalDate.of(2024,1,22  ));
-        returnTicket.setPassenger(mohran);
 
-        em.persist(mohran);
         em.persist(oneWayTicket);
         em.persist(returnTicket);
 

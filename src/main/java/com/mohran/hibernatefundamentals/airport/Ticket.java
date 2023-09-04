@@ -2,7 +2,10 @@ package com.mohran.hibernatefundamentals.airport;
 
 import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Table(name = "TICKETS")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TICKET_TYPE")
 public abstract class Ticket {
     @Id
     @GeneratedValue
