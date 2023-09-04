@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@DiscriminatorValue("R")
+@Table(name = "RETURN_TICKETS")
 public class ReturnTicket extends Ticket {
 
     private LocalDate latestReturnDate;

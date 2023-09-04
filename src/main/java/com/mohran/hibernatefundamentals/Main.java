@@ -25,7 +25,7 @@ public class Main {
         ReturnTicket returnTicket = new ReturnTicket()  ;
         returnTicket.setNumber("BB56789");
         returnTicket.setLatestReturnDate(LocalDate.of(2024,1,22  ));
-
+ 
         em.persist(oneWayTicket);
         em.persist(returnTicket);
 
