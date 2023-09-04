@@ -5,22 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "DEPARTMENTS")
-public class Department {
+@Table(name = "PASSENGERS")
+public class Passenger {
     @Id
     @GeneratedValue
     private int id;
-
     private String name;
+
+    public Passenger(String name) {
+        this.name = name;
+    }
+
+    public Passenger() {
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
