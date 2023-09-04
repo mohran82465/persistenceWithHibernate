@@ -1,9 +1,6 @@
 package com.mohran.hibernatefundamentals.airport;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PASSENGERS")
@@ -12,6 +9,8 @@ public class Passenger {
     @GeneratedValue
     private int id;
     private String name;
+    @Convert(converter = VipConverter.class)
+    private Boolean vip ;
 
     public Passenger(String name) {
         this.name = name;
@@ -32,4 +31,11 @@ public class Passenger {
         this.name = name;
     }
 
+    public Boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(Boolean vip) {
+        this.vip = vip;
+    }
 }
